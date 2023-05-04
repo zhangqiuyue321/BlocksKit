@@ -18,9 +18,7 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
 	id realDelegate = self.realDelegate;
-	if (realDelegate && [realDelegate respondsToSelector:@selector(imagePickerController:didFinishPickingMediaWithInfo:)])
-		[realDelegate imagePickerController:picker didFinishPickingMediaWithInfo:info];
-
+	///fix 选择部分照片页面自动消失的bug
 	void (^block)(UIImagePickerController *, NSDictionary *) = [self blockImplementationForMethod:_cmd];
 	if (block) block(picker, info);
 }
